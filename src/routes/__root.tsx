@@ -11,6 +11,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SiteNav } from "../components/SiteNav";
+import { SiteFooter } from "../components/SiteFooter";
+import { FloatingActions } from "../components/FloatingActions";
 
 function NotFoundComponent() {
   return (
@@ -77,16 +80,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Anytime Gaming Cafe Haldwani — PS5, PC, VR Gaming" },
+      { name: "description", content: "Best gaming cafe in Haldwani. PS5, PS4, PC & VR gaming at Heera Nagar, Jail Road. Book your slot today!" },
+      { name: "author", content: "Anytime Gaming Cafe" },
+      { name: "keywords", content: "gaming cafe haldwani, ps5 gaming haldwani, vr gaming haldwani, pc gaming cafe uttarakhand" },
+      { property: "og:title", content: "Anytime Gaming Cafe Haldwani — PS5, PC, VR Gaming" },
+      { property: "og:description", content: "Haldwani's most advanced gaming cafe. PS5, PS4, PC & VR — all under one roof." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { property: "og:site_name", content: "Anytime Gaming Cafe" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" },
       {
         rel: "stylesheet",
         href: appCss,
@@ -118,8 +125,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="min-h-screen flex flex-col bg-background text-foreground">
+        <SiteNav />
+        <main className="flex-1 pt-24">
+          <Outlet />
+        </main>
+        <SiteFooter />
+        <FloatingActions />
+      </div>
     </QueryClientProvider>
   );
 }
