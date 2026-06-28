@@ -14,6 +14,7 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ReviewsRouteImport } from './routes/reviews'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TournamentsRoute = TournamentsRouteImport.update({
@@ -41,6 +42,11 @@ const GalleryRoute = GalleryRouteImport.update({
   path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -49,6 +55,7 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/pricing': typeof PricingRoute
   '/reviews': typeof ReviewsRoute
@@ -57,6 +64,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/pricing': typeof PricingRoute
   '/reviews': typeof ReviewsRoute
@@ -66,6 +74,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contact': typeof ContactRoute
   '/gallery': typeof GalleryRoute
   '/pricing': typeof PricingRoute
   '/reviews': typeof ReviewsRoute
@@ -76,16 +85,25 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/contact'
     | '/gallery'
     | '/pricing'
     | '/reviews'
     | '/services'
     | '/tournaments'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/gallery' | '/pricing' | '/reviews' | '/services' | '/tournaments'
+  to:
+    | '/'
+    | '/contact'
+    | '/gallery'
+    | '/pricing'
+    | '/reviews'
+    | '/services'
+    | '/tournaments'
   id:
     | '__root__'
     | '/'
+    | '/contact'
     | '/gallery'
     | '/pricing'
     | '/reviews'
@@ -95,6 +113,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContactRoute: typeof ContactRoute
   GalleryRoute: typeof GalleryRoute
   PricingRoute: typeof PricingRoute
   ReviewsRoute: typeof ReviewsRoute
@@ -139,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -151,6 +177,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContactRoute: ContactRoute,
   GalleryRoute: GalleryRoute,
   PricingRoute: PricingRoute,
   ReviewsRoute: ReviewsRoute,
