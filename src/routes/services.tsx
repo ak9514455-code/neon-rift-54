@@ -1,5 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Check, Gamepad2, Monitor, Glasses, Car, Cpu } from "lucide-react";
+import ps5Img from "@/assets/service-ps5.jpg";
+import ps4Img from "@/assets/service-ps4.jpg";
+import pcImg from "@/assets/service-pc.jpg";
+import vrImg from "@/assets/service-vr.jpg";
+import racingImg from "@/assets/service-racing.jpg";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -23,7 +28,7 @@ const services = [
     sub: "The latest generation console.",
     desc: "Play the biggest titles in stunning 4K.",
     features: ["4K HDR Display", "DualSense Haptic Controllers", "Latest Game Library", "2-Player Co-op Available"],
-    image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800",
+    image: ps5Img,
   },
   {
     tag: "PS4",
@@ -32,7 +37,7 @@ const services = [
     sub: "Classic console, premium experience.",
     desc: "Hundreds of titles. Budget-friendly rates.",
     features: ["Full HD Gaming", "Huge Game Selection", "Great for Groups", "Best Value for Money"],
-    image: "https://images.unsplash.com/photo-1486401899868-0e435ed85128?w=800",
+    image: ps4Img,
   },
   {
     tag: "PC",
@@ -41,7 +46,7 @@ const services = [
     sub: "Built for speed. Designed to dominate.",
     desc: "RGB rigs tuned for competitive play.",
     features: ["RTX Graphics Cards", "144Hz Refresh Rate Monitors", "Mechanical Keyboards", "BGMI, Valorant, GTA, FIFA & More"],
-    image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=800",
+    image: pcImg,
   },
   {
     tag: "VR",
@@ -50,7 +55,7 @@ const services = [
     sub: "Step inside the game. Literally.",
     desc: "An experience you can't get at home.",
     features: ["Full VR Headset", "Motion Controllers", "Multiple VR Experiences", "Perfect for First-Timers & Pros"],
-    image: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=800",
+    image: vrImg,
   },
   {
     tag: "RACING",
@@ -59,7 +64,7 @@ const services = [
     sub: "Feel every turn. Drive like it's real.",
     desc: "Full racing wheel and pedal setup for sim racing.",
     features: ["Force Feedback Wheel", "Pedal Set Included", "Racing Simulator", "Play Solo or Race Friends"],
-    image: "https://images.unsplash.com/photo-1547394765-185e1e68f34e?w=800",
+    image: racingImg,
   },
 ];
 
