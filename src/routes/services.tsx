@@ -32,7 +32,7 @@ const services = [
     sub: "Classic console, premium experience.",
     desc: "Hundreds of titles. Budget-friendly rates.",
     features: ["Full HD Gaming", "Huge Game Selection", "Great for Groups", "Best Value for Money"],
-    image: "https://images.unsplash.com/photo-1593118247619-e229f172b9e9?w=800",
+    image: "https://images.unsplash.com/photo-1486401899868-0e435ed85128?w=800",
   },
   {
     tag: "PC",
