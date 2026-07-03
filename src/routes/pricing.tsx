@@ -50,23 +50,65 @@ function Pricing() {
         <h1 className="mt-3 font-display text-5xl sm:text-7xl font-black uppercase text-glow">Simple. Fair. Unbeatable.</h1>
       </header>
 
-      {/* Pricing table */}
-      <div className="glass-card overflow-hidden">
-        <div className="hidden md:grid grid-cols-4 bg-gradient-neon text-white">
-          {["Platform", "Per Hour", "Per 2 Hours", "Session (3hrs)"].map((h) => (
-            <div key={h} className="px-6 py-4 font-accent uppercase tracking-wider text-sm font-bold">{h}</div>
+      {/* PS5 Pricing */}
+      <section className="mb-16">
+        <h2 className="font-display text-3xl sm:text-4xl font-black uppercase mb-6">PS5 Gaming</h2>
+        <div className="glass-card overflow-hidden">
+          <div className="hidden md:grid grid-cols-3 bg-gradient-neon text-white">
+            {["Players", "30 Minutes", "1 Hour"].map((h) => (
+              <div key={h} className="px-6 py-4 font-accent uppercase tracking-wider text-sm font-bold">{h}</div>
+            ))}
+          </div>
+          {ps5Rows.map((r) => (
+            <div key={r.players} className="grid grid-cols-3 border-t border-border/40 items-center">
+              <div className="px-6 py-5 font-display text-xl font-black bg-gradient-pink bg-clip-text text-transparent">{r.players} Player{r.players > 1 ? "s" : ""}</div>
+              <div className="px-6 py-5 font-accent text-lg">₹{r.half}</div>
+              <div className="px-6 py-5 font-accent text-lg">₹{r.one}</div>
+            </div>
           ))}
         </div>
-        {rows.map((r) => (
-          <div key={r.platform} className="grid grid-cols-2 md:grid-cols-4 border-t border-border/40 items-center">
-            <div className="px-6 py-5 font-display text-2xl font-black bg-gradient-pink bg-clip-text text-transparent">{r.platform}</div>
-            <div className="px-6 py-5 font-accent text-lg"><span className="md:hidden text-xs text-muted-foreground uppercase block">Hour</span>₹{r.hr}</div>
-            <div className="px-6 py-5 font-accent text-lg"><span className="md:hidden text-xs text-muted-foreground uppercase block">2 Hours</span>₹{r.two}</div>
-            <div className="px-6 py-5 font-accent text-lg"><span className="md:hidden text-xs text-muted-foreground uppercase block">Session</span>₹{r.sess}</div>
+        <p className="mt-3 text-xs text-muted-foreground italic">Per player rates. Prices may vary for special events.</p>
+      </section>
+
+      {/* PS4 Pricing */}
+      <section className="mb-16">
+        <h2 className="font-display text-3xl sm:text-4xl font-black uppercase mb-6">PS4 Gaming</h2>
+        <div className="glass-card overflow-hidden">
+          <div className="hidden md:grid grid-cols-3 bg-gradient-neon text-white">
+            {["Players", "30 Minutes", "1 Hour"].map((h) => (
+              <div key={h} className="px-6 py-4 font-accent uppercase tracking-wider text-sm font-bold">{h}</div>
+            ))}
           </div>
-        ))}
-      </div>
-      <p className="mt-3 text-xs text-muted-foreground italic">* Indicative pricing. Confirm with the cafe before booking.</p>
+          {ps4Rows.map((r) => (
+            <div key={r.players} className="grid grid-cols-3 border-t border-border/40 items-center">
+              <div className="px-6 py-5 font-display text-xl font-black bg-gradient-pink bg-clip-text text-transparent">{r.players} Player{r.players > 1 ? "s" : ""}</div>
+              <div className="px-6 py-5 font-accent text-lg">₹{r.half}</div>
+              <div className="px-6 py-5 font-accent text-lg">₹{r.one}</div>
+            </div>
+          ))}
+        </div>
+        <p className="mt-3 text-xs text-muted-foreground italic">Per player rates. Prices may vary for special events.</p>
+      </section>
+
+      {/* Duration cards */}
+      <section className="mb-16">
+        <h2 className="font-display text-3xl sm:text-4xl font-black uppercase mb-6">VR & PC Gaming</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {durationCards.map((card) => (
+            <div key={card.title} className="glass-card p-7 hover:shadow-neon transition">
+              <h3 className="font-display text-xl font-bold uppercase mb-4">{card.title}</h3>
+              <div className="space-y-3">
+                {card.prices.map((p) => (
+                  <div key={p.duration} className="flex justify-between items-center">
+                    <span className="text-sm text-muted-foreground">{p.duration}</span>
+                    <span className="font-accent text-lg font-bold">₹{p.price}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Combos */}
       <section className="mt-20">
