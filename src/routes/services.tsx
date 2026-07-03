@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Check, Gamepad2, Monitor, Glasses, Cpu } from "lucide-react";
+import { Check, Gamepad2, Monitor, Glasses, Car, Cpu } from "lucide-react";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -23,6 +23,7 @@ const services = [
     sub: "The latest generation console.",
     desc: "Play the biggest titles in stunning 4K.",
     features: ["4K HDR Display", "DualSense Haptic Controllers", "Latest Game Library", "2-Player Co-op Available"],
+    image: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=800",
   },
   {
     tag: "PS4",
@@ -31,6 +32,7 @@ const services = [
     sub: "Classic console, premium experience.",
     desc: "Hundreds of titles. Budget-friendly rates.",
     features: ["Full HD Gaming", "Huge Game Selection", "Great for Groups", "Best Value for Money"],
+    image: "https://images.unsplash.com/photo-1486401899868-0e435ed85128?w=800",
   },
   {
     tag: "PC",
@@ -39,6 +41,7 @@ const services = [
     sub: "Built for speed. Designed to dominate.",
     desc: "RGB rigs tuned for competitive play.",
     features: ["RTX Graphics Cards", "144Hz Refresh Rate Monitors", "Mechanical Keyboards", "BGMI, Valorant, GTA, FIFA & More"],
+    image: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=800",
   },
   {
     tag: "VR",
@@ -47,6 +50,16 @@ const services = [
     sub: "Step inside the game. Literally.",
     desc: "An experience you can't get at home.",
     features: ["Full VR Headset", "Motion Controllers", "Multiple VR Experiences", "Perfect for First-Timers & Pros"],
+    image: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?w=800",
+  },
+  {
+    tag: "RACING",
+    icon: Car,
+    title: "Racing Wheel",
+    sub: "Feel every turn. Drive like it's real.",
+    desc: "Full racing wheel and pedal setup for sim racing.",
+    features: ["Force Feedback Wheel", "Pedal Set Included", "Racing Simulator", "Play Solo or Race Friends"],
+    image: "https://images.unsplash.com/photo-1547394765-185e1e68f34e?w=800",
   },
 ];
 
@@ -61,27 +74,41 @@ function Services() {
 
       <div className="grid lg:grid-cols-2 gap-6">
         {services.map((s, i) => (
-          <article key={s.tag} className={`group relative overflow-hidden glass-card p-8 hover:-translate-y-2 transition-all duration-500 hover:shadow-neon ${i % 2 ? "lg:translate-y-8" : ""}`}>
-            <div className="absolute -top-10 -right-10 h-48 w-48 rounded-full bg-primary/20 blur-3xl group-hover:bg-primary/40 transition" />
-            <div className="relative flex items-start justify-between gap-4">
-              <div>
-                <div className="font-display text-6xl sm:text-7xl font-black bg-gradient-neon bg-clip-text text-transparent">{s.tag}</div>
-                <h2 className="mt-3 font-display text-2xl font-bold uppercase">{s.title}</h2>
-                <p className="mt-1 font-accent uppercase tracking-wider text-sm text-accent">{s.sub}</p>
-              </div>
-              <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl glass-card">
-                <s.icon size={28} className="text-accent" />
-              </div>
+          <article key={s.tag} className={`group relative overflow-hidden glass-card hover:-translate-y-2 transition-all duration-500 hover:shadow-neon ${i % 2 ? "lg:translate-y-8" : ""}`}>
+            {/* Image */}
+            <div className="relative h-56 sm:h-64 md:h-72 lg:h-auto lg:absolute lg:left-0 lg:top-0 lg:bottom-0 lg:w-2/5 overflow-hidden shrink-0">
+              <img
+                src={s.image}
+                alt={s.title}
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/40" />
             </div>
-            <p className="relative mt-5 text-foreground/80">{s.desc}</p>
-            <ul className="relative mt-6 grid sm:grid-cols-2 gap-3">
-              {s.features.map((f) => (
-                <li key={f} className="flex items-start gap-2 text-sm">
-                  <Check size={16} className="mt-0.5 shrink-0 text-neon-pink" />
-                  <span className="text-foreground/90">{f}</span>
-                </li>
-              ))}
-            </ul>
+
+            {/* Text content */}
+            <div className="relative p-6 sm:p-8 lg:ml-[40%]">
+              <div className="absolute -top-10 -right-10 h-48 w-48 rounded-full bg-primary/20 blur-3xl group-hover:bg-primary/40 transition" />
+              <div className="relative flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <div className="font-display text-6xl sm:text-7xl font-black bg-gradient-neon bg-clip-text text-transparent">{s.tag}</div>
+                  <h2 className="mt-3 font-display text-2xl font-bold uppercase">{s.title}</h2>
+                  <p className="mt-1 font-accent uppercase tracking-wider text-sm text-accent">{s.sub}</p>
+                </div>
+                <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl glass-card">
+                  <s.icon size={28} className="text-accent" />
+                </div>
+              </div>
+              <p className="relative mt-5 text-foreground/80">{s.desc}</p>
+              <ul className="relative mt-6 grid sm:grid-cols-2 gap-3">
+                {s.features.map((f) => (
+                  <li key={f} className="flex items-start gap-2 text-sm">
+                    <Check size={16} className="mt-0.5 shrink-0 text-neon-pink" />
+                    <span className="text-foreground/90">{f}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </article>
         ))}
       </div>
