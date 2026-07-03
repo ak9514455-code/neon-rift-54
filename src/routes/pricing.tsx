@@ -15,11 +15,25 @@ export const Route = createFileRoute("/pricing")({
   component: Pricing,
 });
 
-const rows = [
-  { platform: "PS5", hr: 80, two: 150, sess: 200 },
-  { platform: "PS4", hr: 60, two: 110, sess: 150 },
-  { platform: "PC", hr: 40, two: 75, sess: 100 },
-  { platform: "VR", hr: 100, two: 180, sess: 250 },
+const ps5Rows = [
+  { players: 1, half: 70, one: 100 },
+  { players: 2, half: 120, one: 180 },
+  { players: 3, half: 170, one: 260 },
+  { players: 4, half: 200, one: 300 },
+];
+
+const ps4Rows = [
+  { players: 1, half: 50, one: 80 },
+  { players: 2, half: 100, one: 150 },
+  { players: 3, half: 150, one: 220 },
+  { players: 4, half: 200, one: 250 },
+];
+
+const durationCards = [
+  { title: "VR Experience", prices: [{ duration: "30 Minutes", price: 150 }, { duration: "60 Minutes", price: 250 }] },
+  { title: "VR + Racing Wheel", prices: [{ duration: "30 Minutes", price: 250 }, { duration: "1 Hour", price: 400 }] },
+  { title: "Racing Wheel Only", prices: [{ duration: "30 Minutes", price: 150 }, { duration: "60 Minutes", price: 250 }] },
+  { title: "PC Gaming", prices: [{ duration: "30 Minutes", price: 70 }, { duration: "60 Minutes", price: 100 }] },
 ];
 
 const combos = [
