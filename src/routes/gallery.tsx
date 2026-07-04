@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import cafeImg from "@/assets/cafe-interior.jpg";
 import { Play } from "lucide-react";
+import { SkeletonImage } from "@/components/SkeletonImage";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -44,7 +45,7 @@ function Gallery() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {Array.from({ length: 12 }).map((_, i) => (
           <div key={i} className={`group relative overflow-hidden rounded-xl border border-border ${i === 0 || i === 5 ? "col-span-2 row-span-2 aspect-square" : "aspect-square"}`}>
-            <img src={cafeImg} loading="lazy" width={1600} height={900} alt={`Anytime Gaming Cafe ${tab} ${i + 1}`} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" style={{ filter: `hue-rotate(${i * 22}deg) saturate(1.1)` }} />
+            <SkeletonImage src={cafeImg} loading="lazy" width={1600} height={900} alt={`Anytime Gaming Cafe ${tab} ${i + 1}`} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" style={{ filter: `hue-rotate(${i * 22}deg) saturate(1.1)` }} />
             <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
             <div className="absolute bottom-3 left-3 font-accent uppercase tracking-wider text-xs text-accent opacity-0 group-hover:opacity-100 transition">{tab === "All" ? "Anytime Cafe" : tab}</div>
           </div>
@@ -57,7 +58,7 @@ function Gallery() {
         <div className="grid md:grid-cols-2 gap-6">
           {["Cafe Interior", "Gaming Session"].map((label) => (
             <div key={label} className="relative aspect-[9/16] md:aspect-video glass-card overflow-hidden group cursor-pointer">
-              <img src={cafeImg} alt={label} loading="lazy" width={1600} height={900} className="h-full w-full object-cover opacity-60 group-hover:opacity-80 transition" />
+              <SkeletonImage src={cafeImg} alt={label} loading="lazy" width={1600} height={900} className="h-full w-full object-cover opacity-60 group-hover:opacity-80 transition" />
               <div className="absolute inset-0 grid place-items-center">
                 <div className="grid h-20 w-20 place-items-center rounded-full bg-gradient-pink shadow-neon-pink group-hover:scale-110 transition">
                   <Play size={32} className="text-white ml-1" fill="currentColor" />
