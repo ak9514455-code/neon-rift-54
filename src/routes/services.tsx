@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Check, Gamepad2, Monitor, Glasses, Car, Cpu } from "lucide-react";
+import { SkeletonImage } from "@/components/SkeletonImage";
 import ps5Img from "@/assets/service-ps5.jpg";
 import ps4Img from "@/assets/service-ps4.jpg";
 import pcImg from "@/assets/service-pc.jpg";
@@ -82,12 +83,12 @@ function Services() {
           <article key={s.tag} className={`group relative overflow-hidden glass-card hover:-translate-y-2 transition-all duration-500 hover:shadow-neon ${i % 2 ? "lg:translate-y-8" : ""}`}>
             {/* Image */}
             <div className="relative h-56 sm:h-64 md:h-72 lg:h-auto lg:absolute lg:left-0 lg:top-0 lg:bottom-0 lg:w-2/5 overflow-hidden shrink-0">
-              <img
-                src={s.image}
-                alt={s.title}
-                loading="lazy"
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+            <SkeletonImage
+              src={s.image}
+              alt={s.title}
+              loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
               <div className="absolute inset-0 bg-black/40" />
             </div>
 
