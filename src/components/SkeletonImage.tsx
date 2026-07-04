@@ -8,6 +8,7 @@ export function SkeletonImage({
   onLoad,
   onError,
   alt = "",
+  style,
   ...props
 }: SkeletonImageProps) {
   const [loaded, setLoaded] = useState(false);
@@ -25,9 +26,9 @@ export function SkeletonImage({
         alt={alt}
         className={cn(
           "h-full w-full object-cover transition-opacity duration-500",
-          loaded ? "opacity-100" : "opacity-0",
           className
         )}
+        style={{ ...style, opacity: loaded ? undefined : 0 }}
         onLoad={(e) => {
           setLoaded(true);
           onLoad?.(e);
