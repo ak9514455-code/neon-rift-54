@@ -57,22 +57,22 @@
 :root {
   --radius: 0.75rem;
   /* Anytime Gaming — dark neon gaming theme */
-  --background: oklch(0.08 0.02 280);        /* #0A0A0F deep black */
-  --foreground: oklch(0.97 0.01 280);        /* #F0F0FF off-white */
-  --card: oklch(0.13 0.025 280);             /* #12121E dark card */
+  --background: oklch(0.08 0.02 280); /* #0A0A0F deep black */
+  --foreground: oklch(0.97 0.01 280); /* #F0F0FF off-white */
+  --card: oklch(0.13 0.025 280); /* #12121E dark card */
   --card-dark: oklch(0.13 0.025 280);
   --card-foreground: oklch(0.97 0.01 280);
   --popover: oklch(0.13 0.025 280);
   --popover-foreground: oklch(0.97 0.01 280);
-  --primary: oklch(0.55 0.27 295);           /* #7B2FFF electric purple */
+  --primary: oklch(0.55 0.27 295); /* #7B2FFF electric purple */
   --primary-foreground: oklch(0.97 0.01 280);
   --secondary: oklch(0.18 0.04 280);
   --secondary-foreground: oklch(0.97 0.01 280);
   --muted: oklch(0.18 0.03 280);
   --muted-foreground: oklch(0.72 0.04 280);
-  --accent: oklch(0.78 0.18 220);            /* #00D4FF neon blue */
+  --accent: oklch(0.78 0.18 220); /* #00D4FF neon blue */
   --accent-foreground: oklch(0.08 0.02 280);
-  --destructive: oklch(0.65 0.27 10);        /* #FF2D7A hot pink */
+  --destructive: oklch(0.65 0.27 10); /* #FF2D7A hot pink */
   --destructive-foreground: oklch(0.97 0.01 280);
   --border: oklch(0.25 0.05 285 / 50%);
   --input: oklch(0.2 0.04 280);
@@ -94,7 +94,9 @@
   --sidebar-border: oklch(0.25 0.05 285 / 50%);
   --sidebar-ring: oklch(0.55 0.27 295);
 
-  --gradient-hero: radial-gradient(ellipse at top, oklch(0.2 0.12 295 / 0.6), transparent 60%), radial-gradient(ellipse at bottom right, oklch(0.25 0.15 220 / 0.4), transparent 60%);
+  --gradient-hero:
+    radial-gradient(ellipse at top, oklch(0.2 0.12 295 / 0.6), transparent 60%),
+    radial-gradient(ellipse at bottom right, oklch(0.25 0.15 220 / 0.4), transparent 60%);
   --gradient-neon: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
   --gradient-pink: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
   --shadow-neon: 0 0 30px oklch(0.55 0.27 295 / 0.5), 0 0 60px oklch(0.55 0.27 295 / 0.25);
@@ -114,7 +116,10 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     letter-spacing: 0.02em;
   }
@@ -145,11 +150,15 @@
 }
 
 @utility text-glow {
-  text-shadow: 0 0 20px oklch(0.78 0.18 220 / 0.7), 0 0 40px oklch(0.55 0.27 295 / 0.4);
+  text-shadow:
+    0 0 20px oklch(0.78 0.18 220 / 0.7),
+    0 0 40px oklch(0.55 0.27 295 / 0.4);
 }
 
 @utility text-glow-pink {
-  text-shadow: 0 0 20px oklch(0.65 0.27 10 / 0.7), 0 0 40px oklch(0.65 0.27 10 / 0.4);
+  text-shadow:
+    0 0 20px oklch(0.65 0.27 10 / 0.7),
+    0 0 40px oklch(0.65 0.27 10 / 0.4);
 }
 
 @utility bg-gradient-neon {
@@ -180,19 +189,39 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(3deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(3deg);
+  }
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px oklch(0.55 0.27 295 / 0.5); }
-  50% { box-shadow: 0 0 40px oklch(0.55 0.27 295 / 0.8), 0 0 60px oklch(0.78 0.18 220 / 0.4); }
+  0%,
+  100% {
+    box-shadow: 0 0 20px oklch(0.55 0.27 295 / 0.5);
+  }
+  50% {
+    box-shadow:
+      0 0 40px oklch(0.55 0.27 295 / 0.8),
+      0 0 60px oklch(0.78 0.18 220 / 0.4);
+  }
 }
 
 @keyframes particle-rise {
-  0% { transform: translateY(100vh) scale(0); opacity: 0; }
-  10% { opacity: 1; }
-  100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1);
+    opacity: 0;
+  }
 }
 
 @utility animate-float {
@@ -204,12 +233,22 @@
 }
 
 @keyframes skeleton-shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 @utility skeleton {
-  background: linear-gradient(110deg, var(--muted) 8%, oklch(0.35 0.1 295 / 0.55) 18%, oklch(0.55 0.18 220 / 0.35) 30%, var(--muted) 33%);
+  background: linear-gradient(
+    110deg,
+    var(--muted) 8%,
+    oklch(0.35 0.1 295 / 0.55) 18%,
+    oklch(0.55 0.18 220 / 0.35) 30%,
+    var(--muted) 33%
+  );
   background-size: 200% 100%;
   animation: skeleton-shimmer 1.5s linear infinite;
 }
