@@ -4,6 +4,7 @@ import { ArrowRight, Cpu, Headphones, Snowflake, Clock, Wifi, Users, Star, Spark
 import controllerImg from "@/assets/hero-controller.png";
 import cafeImg from "@/assets/cafe-interior.jpg";
 import { Particles } from "@/components/Particles";
+import { SkeletonImage } from "@/components/SkeletonImage";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -185,7 +186,7 @@ function Home() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
             <div key={i} className={`relative overflow-hidden rounded-xl border border-border ${i === 0 ? "md:col-span-2 md:row-span-2 aspect-square md:aspect-auto" : "aspect-square"}`}>
-              <img src={cafeImg} alt="Gaming cafe interior" loading="lazy" width={1600} height={900} className="h-full w-full object-cover transition-transform duration-700 hover:scale-110" style={{ filter: `hue-rotate(${i * 30}deg)` }} />
+              <SkeletonImage src={cafeImg} alt="Gaming cafe interior" loading="lazy" width={1600} height={900} className="h-full w-full object-cover transition-transform duration-700 hover:scale-110" style={{ filter: `hue-rotate(${i * 30}deg)` }} />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
             </div>
           ))}
