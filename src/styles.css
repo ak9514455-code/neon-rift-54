@@ -201,4 +201,15 @@
 
 @utility animate-pulse-glow {
   animation: pulse-glow 3s ease-in-out infinite;
-  }
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@utility skeleton {
+  background: linear-gradient(110deg, var(--card) 8%, oklch(0.25 0.05 285 / 0.5) 18%, var(--card) 33%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s linear infinite;
+}
