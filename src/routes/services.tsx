@@ -164,7 +164,7 @@ function Services() {
         </p>
         <p className="mt-2 text-sm text-muted-foreground">New games added regularly.</p>
         <a
-          href="__WA_BOOKING__"
+          href={WHATSAPP_BOOKING_URL}
           target="_blank"
           rel="noreferrer"
           className="mt-6 inline-flex items-center gap-2 rounded-md bg-gradient-pink px-6 py-3 font-accent font-bold uppercase tracking-wider text-white shadow-neon-pink hover:scale-105 transition"

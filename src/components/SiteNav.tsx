@@ -35,7 +35,7 @@ export function SiteNav() {
             ))}
           </nav>
           <a
-            href="__WA_BOOKING__"
+            href={WHATSAPP_BOOKING_URL}
             target="_blank"
             rel="noreferrer"
             className="hidden lg:inline-flex items-center rounded-md bg-gradient-pink px-4 py-2 text-sm font-accent font-bold uppercase tracking-wider text-white shadow-neon-pink hover:opacity-90 transition"
@@ -65,7 +65,7 @@ export function SiteNav() {
                 </Link>
               ))}
               <a
-                href="__WA_BOOKING__"
+                href={WHATSAPP_BOOKING_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-2 inline-flex justify-center items-center rounded-md bg-gradient-pink px-4 py-3 text-sm font-accent font-bold uppercase tracking-wider text-white"

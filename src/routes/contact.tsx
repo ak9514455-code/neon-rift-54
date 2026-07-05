@@ -22,7 +22,7 @@ function Contact() {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
     const text = `Hi! I'm ${fd.get("name")} (${fd.get("phone")}). ${fd.get("message")}`;
-    window.open(`__WA_BOOKING__?text=${encodeURIComponent(text)}`, "_blank");
+    window.open(whatsappUrl(text), "_blank");
     setSent(true);
   };
 
@@ -55,7 +55,7 @@ function Contact() {
             <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gradient-neon shadow-neon"><Phone size={20} className="text-white" /></div>
             <div>
               <p className="font-accent uppercase tracking-wider text-xs text-accent">WhatsApp / Call</p>
-              <a href="tel:__TEL__" className="mt-1 block font-display text-lg hover:text-accent">__PHONE_DISPLAY__</a>
+              <a href={`tel:${PHONE_TEL}`} className="mt-1 block font-display text-lg hover:text-accent">{PHONE_DISPLAY}</a>
             </div>
           </div>
           <div className="flex gap-4">
@@ -77,7 +77,7 @@ function Contact() {
             </div>
             <div>
               <label className="font-accent uppercase tracking-wider text-xs text-muted-foreground">Phone</label>
-              <input required name="phone" type="tel" className="mt-1 w-full rounded-md bg-input/50 border border-border px-4 py-3 text-foreground focus:outline-none focus:border-accent focus:shadow-neon-blue transition" placeholder="__PHONE_DISPLAY__" />
+              <input required name="phone" type="tel" className="mt-1 w-full rounded-md bg-input/50 border border-border px-4 py-3 text-foreground focus:outline-none focus:border-accent focus:shadow-neon-blue transition" placeholder={PHONE_DISPLAY} />
             </div>
             <div>
               <label className="font-accent uppercase tracking-wider text-xs text-muted-foreground">Message / Query</label>
