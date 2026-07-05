@@ -1,3 +1,4 @@
+import { WHATSAPP_BOOKING_URL, PHONE_TEL, PHONE_DISPLAY, whatsappUrl } from "@/lib/whatsapp";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {

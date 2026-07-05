@@ -1,3 +1,4 @@
+import { WHATSAPP_BOOKING_URL, PHONE_TEL, PHONE_DISPLAY, whatsappUrl } from "@/lib/whatsapp";
 import { createFileRoute } from "@tanstack/react-router";
 import { Check, Crown, Moon, Cake, Users } from "lucide-react";
 

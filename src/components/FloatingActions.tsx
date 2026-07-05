@@ -1,3 +1,4 @@
+import { WHATSAPP_BOOKING_URL, PHONE_TEL, PHONE_DISPLAY, whatsappUrl } from "@/lib/whatsapp";
 import { Phone, MessageCircle } from "lucide-react";
 
 export function FloatingActions() {
