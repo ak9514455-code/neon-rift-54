@@ -33,7 +33,7 @@ function Tournaments() {
             <span className="font-accent uppercase tracking-widest text-xs text-neon-pink">🔥 Upcoming</span>
             <h2 className="mt-2 font-display text-4xl md:text-5xl font-black uppercase">BGMI Squad Showdown</h2>
             <p className="mt-3 text-muted-foreground">Get your squad together. Lock in your seat. Bring the noise.</p>
-            <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center rounded-md bg-gradient-pink px-7 py-3 font-accent font-bold uppercase tracking-wider text-white shadow-neon-pink hover:scale-105 transition">
+            <a href="__WA_BOOKING__" target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center rounded-md bg-gradient-pink px-7 py-3 font-accent font-bold uppercase tracking-wider text-white shadow-neon-pink hover:scale-105 transition">
               Register on WhatsApp
             </a>
           </div>

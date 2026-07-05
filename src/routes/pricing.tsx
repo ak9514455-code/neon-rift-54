@@ -153,7 +153,7 @@ function Pricing() {
                   </li>
                 ))}
               </ul>
-              <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className={`mt-7 block text-center rounded-md px-5 py-3 font-accent font-bold uppercase tracking-wider text-sm ${p.popular ? "bg-gradient-pink text-white shadow-neon-pink" : "glass-card hover:shadow-neon"}`}>
+              <a href="__WA_BOOKING__" target="_blank" rel="noreferrer" className={`mt-7 block text-center rounded-md px-5 py-3 font-accent font-bold uppercase tracking-wider text-sm ${p.popular ? "bg-gradient-pink text-white shadow-neon-pink" : "glass-card hover:shadow-neon"}`}>
                 Join {p.name}
               </a>
             </div>
@@ -166,7 +166,7 @@ function Pricing() {
       <section className="mt-24 glass-card p-12 text-center">
         <h3 className="font-display text-2xl sm:text-3xl font-black uppercase">Got a custom requirement?</h3>
         <p className="mt-2 text-muted-foreground">Event? Birthday? School trip? We'll work out a special deal.</p>
-        <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center rounded-md bg-gradient-pink px-7 py-3 font-accent font-bold uppercase tracking-wider text-white shadow-neon-pink hover:scale-105 transition">
+        <a href="__WA_BOOKING__" target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center rounded-md bg-gradient-pink px-7 py-3 font-accent font-bold uppercase tracking-wider text-white shadow-neon-pink hover:scale-105 transition">
           Talk to Us on WhatsApp
         </a>
       </section>
