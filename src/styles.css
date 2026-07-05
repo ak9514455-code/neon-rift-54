@@ -49,18 +49,18 @@
   --color-neon-blue: var(--neon-blue);
   --color-neon-pink: var(--neon-pink);
   --color-card-dark: var(--card-dark);
-  --font-display: "Orbitron", sans-serif;
-  --font-sans: "Inter", sans-serif;
+  --font-display: "Bebas Neue", "Impact", sans-serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
   --font-accent: "Rajdhani", sans-serif;
 }
 
 :root {
   --radius: 0.75rem;
   /* Anytime Gaming — dark neon gaming theme */
-  --background: oklch(0.08 0.02 280); /* #0A0A0F deep black */
+  --background: oklch(0.06 0.02 280); /* #070710 deep black */
   --foreground: oklch(0.97 0.01 280); /* #F0F0FF off-white */
-  --card: oklch(0.13 0.025 280); /* #12121E dark card */
-  --card-dark: oklch(0.13 0.025 280);
+  --card: oklch(0.11 0.025 280); /* #0D0D1A dark card */
+  --card-dark: oklch(0.11 0.025 280);
   --card-foreground: oklch(0.97 0.01 280);
   --popover: oklch(0.13 0.025 280);
   --popover-foreground: oklch(0.97 0.01 280);

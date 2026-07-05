@@ -1,3 +1,4 @@
+import { WHATSAPP_BOOKING_URL, PHONE_TEL, PHONE_DISPLAY, whatsappUrl } from "@/lib/whatsapp";
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -35,7 +36,7 @@ export function SiteNav() {
             ))}
           </nav>
           <a
-            href="https://wa.me/919876543210"
+            href={WHATSAPP_BOOKING_URL}
             target="_blank"
             rel="noreferrer"
             className="hidden lg:inline-flex items-center rounded-md bg-gradient-pink px-4 py-2 text-sm font-accent font-bold uppercase tracking-wider text-white shadow-neon-pink hover:opacity-90 transition"
@@ -65,7 +66,7 @@ export function SiteNav() {
                 </Link>
               ))}
               <a
-                href="https://wa.me/919876543210"
+                href={WHATSAPP_BOOKING_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-2 inline-flex justify-center items-center rounded-md bg-gradient-pink px-4 py-3 text-sm font-accent font-bold uppercase tracking-wider text-white"

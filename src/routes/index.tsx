@@ -1,3 +1,4 @@
+import { WHATSAPP_BOOKING_URL, PHONE_TEL, PHONE_DISPLAY, whatsappUrl } from "@/lib/whatsapp";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -115,7 +116,7 @@ function Home() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <a
-                href="https://wa.me/919876543210"
+                href={WHATSAPP_BOOKING_URL}
                 target="_blank"
                 rel="noreferrer"
                 className="group inline-flex items-center gap-2 rounded-md bg-gradient-pink px-7 py-4 font-accent font-bold uppercase tracking-wider text-white shadow-neon-pink hover:scale-105 transition"
@@ -326,7 +327,7 @@ function Home() {
               Your next gaming session is one click away.
             </p>
             <a
-              href="https://wa.me/919876543210"
+              href={WHATSAPP_BOOKING_URL}
               target="_blank"
               rel="noreferrer"
               className="mt-8 inline-flex items-center gap-3 rounded-md bg-gradient-pink px-8 py-4 font-accent font-bold uppercase tracking-wider text-white shadow-neon-pink hover:scale-105 transition"

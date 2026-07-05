@@ -1,3 +1,4 @@
+import { WHATSAPP_BOOKING_URL, PHONE_TEL, PHONE_DISPLAY, whatsappUrl } from "@/lib/whatsapp";
 import { createFileRoute } from "@tanstack/react-router";
 import { Check, Gamepad2, Monitor, Glasses, Car, Cpu } from "lucide-react";
 import { SkeletonImage } from "@/components/SkeletonImage";
@@ -164,7 +165,7 @@ function Services() {
         </p>
         <p className="mt-2 text-sm text-muted-foreground">New games added regularly.</p>
         <a
-          href="https://wa.me/919876543210"
+          href={WHATSAPP_BOOKING_URL}
           target="_blank"
           rel="noreferrer"
           className="mt-6 inline-flex items-center gap-2 rounded-md bg-gradient-pink px-6 py-3 font-accent font-bold uppercase tracking-wider text-white shadow-neon-pink hover:scale-105 transition"

@@ -1,3 +1,4 @@
+import { WHATSAPP_BOOKING_URL, PHONE_TEL, PHONE_DISPLAY, whatsappUrl } from "@/lib/whatsapp";
 import { Link } from "@tanstack/react-router";
 import { Instagram, MessageCircle, MapPin, Phone } from "lucide-react";
 
@@ -30,7 +31,7 @@ export function SiteFooter() {
           <h4 className="font-display text-sm uppercase tracking-widest text-foreground mb-4">Contact</h4>
           <ul className="space-y-3 text-sm text-muted-foreground">
             <li className="flex gap-2"><MapPin size={16} className="mt-0.5 shrink-0 text-accent" /> Jail Rd, Heera Nagar, Haldwani, Uttarakhand</li>
-            <li className="flex gap-2"><Phone size={16} className="mt-0.5 shrink-0 text-accent" /> +91 98765 43210</li>
+            <li className="flex gap-2"><Phone size={16} className="mt-0.5 shrink-0 text-accent" /> {PHONE_DISPLAY}</li>
             <li className="flex gap-2"><Instagram size={16} className="mt-0.5 shrink-0 text-accent" /> @anytimegaming_hld</li>
           </ul>
         </div>
@@ -39,7 +40,7 @@ export function SiteFooter() {
           <p className="text-sm text-muted-foreground">Monday – Sunday<br/>10:00 AM – 11:00 PM</p>
           <p className="mt-3 font-accent text-sm text-neon-pink uppercase tracking-wider">Open All 7 Days</p>
           <div className="mt-5 flex gap-3">
-            <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="grid h-10 w-10 place-items-center rounded-lg glass-card hover:shadow-neon-pink transition" aria-label="WhatsApp"><MessageCircle size={18} /></a>
+            <a href={WHATSAPP_BOOKING_URL} target="_blank" rel="noreferrer" className="grid h-10 w-10 place-items-center rounded-lg glass-card hover:shadow-neon-pink transition" aria-label="WhatsApp"><MessageCircle size={18} /></a>
             <a href="https://instagram.com/anytimegaming_hld" target="_blank" rel="noreferrer" className="grid h-10 w-10 place-items-center rounded-lg glass-card hover:shadow-neon transition" aria-label="Instagram"><Instagram size={18} /></a>
             <a href="https://maps.google.com/?q=Heera+Nagar+Haldwani" target="_blank" rel="noreferrer" className="grid h-10 w-10 place-items-center rounded-lg glass-card hover:shadow-neon transition" aria-label="Map"><MapPin size={18} /></a>
           </div>
