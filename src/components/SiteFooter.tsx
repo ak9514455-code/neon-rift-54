@@ -1,53 +1,134 @@
-import { WHATSAPP_BOOKING_URL, PHONE_TEL, PHONE_DISPLAY, whatsappUrl } from "@/lib/whatsapp";
+import { PHONE_DISPLAY, WHATSAPP_BOOKING_URL } from "@/lib/whatsapp";
 import { Link } from "@tanstack/react-router";
-import { Instagram, MessageCircle, MapPin, Phone } from "lucide-react";
+import { Instagram, MapPin, Phone, MessageCircle } from "lucide-react";
 
 export function SiteFooter() {
   return (
-    <footer className="relative mt-32 border-t border-border/40 bg-card/30">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 py-16 grid gap-12 md:grid-cols-4">
+    <footer
+      className="mt-24 border-t"
+      style={{ background: "#040408", borderColor: "var(--brand-border)" }}
+    >
+      <div className="mx-auto max-w-[1200px] px-5 sm:px-8 pt-16 pb-10 grid gap-12 md:grid-cols-4">
         <div className="md:col-span-1">
-          <div className="flex items-center gap-2 font-display font-black text-xl tracking-wider">
-            <span className="grid h-10 w-10 place-items-center rounded-lg bg-gradient-neon text-white shadow-neon">A</span>
-            ANYTIME<span className="text-accent">.</span>
+          <div className="flex items-center gap-2.5">
+            <span
+              className="grid h-10 w-10 place-items-center rounded-md font-display text-xl"
+              style={{ background: "var(--brand-red)", color: "var(--brand-white)" }}
+            >
+              A
+            </span>
+            <span className="font-display text-xl tracking-widest">
+              ANYTIME<span style={{ color: "var(--brand-red)" }}>.</span>
+            </span>
           </div>
-          <p className="mt-4 font-accent uppercase tracking-widest text-sm text-accent">Game On. Anytime.</p>
-          <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
-            Haldwani's most advanced gaming cafe. PS5, PS4, PC & VR — all under one roof.
+          <p
+            className="mt-5 font-accent font-bold uppercase text-[13px]"
+            style={{ letterSpacing: "3px", color: "var(--brand-red)" }}
+          >
+            Come. Play. Win. Repeat.
+          </p>
+          <p className="mt-4 text-sm leading-relaxed" style={{ color: "var(--brand-muted)" }}>
+            Haldwani's premier gaming destination. PS5, PS4, PC, VR & Racing under one roof.
           </p>
         </div>
+
         <div>
-          <h4 className="font-display text-sm uppercase tracking-widest text-foreground mb-4">Quick Links</h4>
-          <ul className="space-y-2 text-sm text-muted-foreground">
-            <li><Link to="/services" className="hover:text-accent">Services</Link></li>
-            <li><Link to="/pricing" className="hover:text-accent">Pricing</Link></li>
-            <li><Link to="/gallery" className="hover:text-accent">Gallery</Link></li>
-            <li><Link to="/tournaments" className="hover:text-accent">Tournaments</Link></li>
-            <li><Link to="/reviews" className="hover:text-accent">Reviews</Link></li>
-            <li><Link to="/contact" className="hover:text-accent">Visit Us</Link></li>
+          <h4
+            className="font-accent font-semibold uppercase text-[11px] mb-5"
+            style={{ letterSpacing: "3px", color: "var(--brand-muted)" }}
+          >
+            Pages
+          </h4>
+          <ul className="space-y-3 text-[14px]">
+            {[
+              { to: "/services", label: "Platforms" },
+              { to: "/pricing", label: "Pricing" },
+              { to: "/gallery", label: "Gallery" },
+              { to: "/tournaments", label: "Tournaments" },
+              { to: "/reviews", label: "Reviews" },
+              { to: "/contact", label: "Visit Us" },
+            ].map((l) => (
+              <li key={l.to}>
+                <Link
+                  to={l.to}
+                  className="transition-colors duration-[120ms] hover:text-white"
+                  style={{ color: "var(--brand-muted)" }}
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
+
         <div>
-          <h4 className="font-display text-sm uppercase tracking-widest text-foreground mb-4">Contact</h4>
-          <ul className="space-y-3 text-sm text-muted-foreground">
-            <li className="flex gap-2"><MapPin size={16} className="mt-0.5 shrink-0 text-accent" /> Jail Rd, Heera Nagar, Haldwani, Uttarakhand</li>
-            <li className="flex gap-2"><Phone size={16} className="mt-0.5 shrink-0 text-accent" /> {PHONE_DISPLAY}</li>
-            <li className="flex gap-2"><Instagram size={16} className="mt-0.5 shrink-0 text-accent" /> @anytimegaming_hld</li>
+          <h4
+            className="font-accent font-semibold uppercase text-[11px] mb-5"
+            style={{ letterSpacing: "3px", color: "var(--brand-muted)" }}
+          >
+            Contact
+          </h4>
+          <ul className="space-y-3 text-[14px]" style={{ color: "var(--brand-white)" }}>
+            <li className="flex gap-2.5">
+              <MapPin size={16} className="mt-0.5 shrink-0" style={{ color: "var(--brand-red)" }} />
+              <span style={{ color: "var(--brand-muted)" }}>
+                Jail Rd, Heera Nagar,
+                <br />
+                Haldwani, Uttarakhand
+              </span>
+            </li>
+            <li className="flex gap-2.5">
+              <Phone size={16} className="mt-0.5 shrink-0" style={{ color: "var(--brand-red)" }} />
+              <span style={{ color: "var(--brand-muted)" }}>{PHONE_DISPLAY}</span>
+            </li>
+            <li className="flex gap-2.5">
+              <Instagram size={16} className="mt-0.5 shrink-0" style={{ color: "var(--brand-red)" }} />
+              <span style={{ color: "var(--brand-muted)" }}>@anytimegaming_hld</span>
+            </li>
           </ul>
         </div>
+
         <div>
-          <h4 className="font-display text-sm uppercase tracking-widest text-foreground mb-4">Hours</h4>
-          <p className="text-sm text-muted-foreground">Monday – Sunday<br/>10:00 AM – 11:00 PM</p>
-          <p className="mt-3 font-accent text-sm text-neon-pink uppercase tracking-wider">Open All 7 Days</p>
-          <div className="mt-5 flex gap-3">
-            <a href={WHATSAPP_BOOKING_URL} target="_blank" rel="noreferrer" className="grid h-10 w-10 place-items-center rounded-lg glass-card hover:shadow-neon-pink transition" aria-label="WhatsApp"><MessageCircle size={18} /></a>
-            <a href="https://instagram.com/anytimegaming_hld" target="_blank" rel="noreferrer" className="grid h-10 w-10 place-items-center rounded-lg glass-card hover:shadow-neon transition" aria-label="Instagram"><Instagram size={18} /></a>
-            <a href="https://maps.google.com/?q=Heera+Nagar+Haldwani" target="_blank" rel="noreferrer" className="grid h-10 w-10 place-items-center rounded-lg glass-card hover:shadow-neon transition" aria-label="Map"><MapPin size={18} /></a>
+          <h4
+            className="font-accent font-semibold uppercase text-[11px] mb-5"
+            style={{ letterSpacing: "3px", color: "var(--brand-muted)" }}
+          >
+            Follow
+          </h4>
+          <p className="text-[14px] mb-4" style={{ color: "var(--brand-muted)" }}>
+            Mon – Sun · 10:00 AM – 11:00 PM
+          </p>
+          <div className="flex gap-2.5">
+            {[
+              { href: WHATSAPP_BOOKING_URL, icon: MessageCircle, label: "WhatsApp" },
+              { href: "https://instagram.com/anytimegaming_hld", icon: Instagram, label: "Instagram" },
+              { href: "https://maps.google.com/?q=Heera+Nagar+Haldwani", icon: MapPin, label: "Map" },
+            ].map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={s.label}
+                className="grid h-10 w-10 place-items-center rounded-md border transition-all duration-[160ms] hover:border-[var(--brand-red)] hover:text-white"
+                style={{
+                  borderColor: "var(--brand-border)",
+                  color: "var(--brand-muted)",
+                  background: "var(--brand-card)",
+                }}
+              >
+                <s.icon size={18} />
+              </a>
+            ))}
           </div>
         </div>
       </div>
-      <div className="border-t border-border/40 py-5 text-center text-xs text-muted-foreground">
-        © 2026 Anytime Gaming Cafe. All Rights Reserved.
+
+      <div
+        className="border-t py-6 text-center text-xs"
+        style={{ borderColor: "var(--brand-border)", color: "var(--brand-muted)" }}
+      >
+        © 2026 Anytime Gaming Cafe · All Rights Reserved
       </div>
     </footer>
   );

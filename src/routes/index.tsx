@@ -1,20 +1,8 @@
-import { WHATSAPP_BOOKING_URL, PHONE_TEL, PHONE_DISPLAY, whatsappUrl } from "@/lib/whatsapp";
+import { WHATSAPP_BOOKING_URL } from "@/lib/whatsapp";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import {
-  ArrowRight,
-  Cpu,
-  Headphones,
-  Snowflake,
-  Clock,
-  Wifi,
-  Users,
-  Star,
-  Sparkles,
-} from "lucide-react";
-import controllerImg from "@/assets/hero-controller.png";
+import { ArrowRight, Cpu, Gamepad2, Glasses, Car, Wifi, Snowflake, Star, ChevronDown } from "lucide-react";
 import cafeImg from "@/assets/cafe-interior.jpg";
-import { Particles } from "@/components/Particles";
 import { SkeletonImage } from "@/components/SkeletonImage";
 
 export const Route = createFileRoute("/")({
@@ -23,14 +11,10 @@ export const Route = createFileRoute("/")({
       { title: "Anytime Gaming Cafe — PS5, PC & VR in Haldwani" },
       {
         name: "description",
-        content:
-          "Haldwani's most advanced gaming cafe. PS5, PS4, PC & VR — all under one roof at Heera Nagar, Jail Road. Book your slot today.",
+        content: "Haldwani's premier gaming destination. PS5, PS4, PC, VR & Racing Wheel at Heera Nagar, Jail Road. Book your slot today.",
       },
-      { property: "og:title", content: "Anytime Gaming Cafe — PS5, PC & VR in Haldwani" },
-      {
-        property: "og:description",
-        content: "Haldwani's most advanced gaming cafe. PS5, PS4, PC & VR all under one roof.",
-      },
+      { property: "og:title", content: "Anytime Gaming — Game Without Limits" },
+      { property: "og:description", content: "PS5, PS4, PC, VR & Racing under one roof in Haldwani." },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -38,7 +22,7 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
+function Counter({ to, suffix = "", decimals = 0 }: { to: number; suffix?: string; decimals?: number }) {
   const [n, setN] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   useEffect(() => {
@@ -46,12 +30,10 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
     if (!el) return;
     const io = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-        let start = 0;
-        const duration = 1500;
         const t0 = performance.now();
         const tick = (t: number) => {
-          const p = Math.min(1, (t - t0) / duration);
-          setN(Math.floor(start + (to - start) * (1 - Math.pow(1 - p, 3))));
+          const p = Math.min(1, (t - t0) / 1400);
+          setN(to * (1 - Math.pow(1 - p, 3)));
           if (p < 1) requestAnimationFrame(tick);
         };
         requestAnimationFrame(tick);
@@ -63,110 +45,198 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
   }, [to]);
   return (
     <span ref={ref}>
-      {n.toLocaleString()}
+      {decimals ? n.toFixed(decimals) : Math.floor(n).toLocaleString()}
       {suffix}
     </span>
   );
 }
 
 const features = [
-  { icon: Cpu, title: "High-End Hardware", desc: "RTX graphics, 144Hz monitors, zero lag." },
-  { icon: Headphones, title: "Full Immersion", desc: "Premium headsets with surround sound." },
-  { icon: Snowflake, title: "AC Comfort", desc: "Fully air-conditioned for long sessions." },
-  { icon: Clock, title: "Flexible Timings", desc: "Open early, close late — game anytime." },
-  { icon: Wifi, title: "Blazing Fast Net", desc: "High-speed internet, zero buffering." },
-  { icon: Users, title: "Squad-Friendly", desc: "Private rooms available for groups." },
+  { icon: Cpu, title: "High-End Hardware", desc: "RTX graphics, 144Hz monitors, zero lag. Built for serious gaming." },
+  { icon: Gamepad2, title: "Premium Consoles", desc: "Latest PS5 and PS4 with full game libraries. DualSense controllers included." },
+  { icon: Glasses, title: "VR Experience", desc: "Step into another world. Full VR headsets with motion controllers." },
+  { icon: Car, title: "Racing Simulator", desc: "Feel every turn. Racing wheel and pedal setup for the ultimate sim experience." },
+  { icon: Wifi, title: "Blazing Internet", desc: "High-speed fibre. Zero buffering. Always connected." },
+  { icon: Snowflake, title: "Fully AC", desc: "Cool environment. Game for hours in complete comfort." },
 ];
 
-const services = [
-  { tag: "PS5", title: "PlayStation 5", desc: "Latest titles in stunning 4K." },
-  { tag: "PS4", title: "PlayStation 4", desc: "Classic console, premium experience." },
-  { tag: "PC", title: "Gaming PC", desc: "RTX cards, 144Hz, mechanical keys." },
-  { tag: "VR", title: "Virtual Reality", desc: "Step inside the game. Literally." },
+const platforms = [
+  { tag: "PS5", title: "PlayStation 5", price: "₹100 / hr", desc: "4K HDR, DualSense controllers" },
+  { tag: "PS4", title: "PlayStation 4", price: "₹80 / hr", desc: "Huge game library, best value" },
+  { tag: "PC", title: "Gaming PC", price: "₹100 / hr", desc: "RTX rigs, 144Hz, mechanical keys" },
+  { tag: "VR", title: "Virtual Reality", price: "₹250 / hr", desc: "Motion controllers, immersive worlds" },
 ];
 
 function Home() {
-  const [popup, setPopup] = useState(false);
-  useEffect(() => {
-    const t = setTimeout(() => setPopup(true), 3500);
-    return () => clearTimeout(t);
-  }, []);
-
   return (
-    <div className="relative">
+    <div>
       {/* HERO */}
-      <section className="relative min-h-[88vh] overflow-hidden">
-        <div className="absolute inset-0 grid-bg opacity-40" />
-        <div className="absolute inset-0 bg-gradient-hero" />
-        <Particles count={40} />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 py-16 grid lg:grid-cols-2 gap-10 items-center">
-          <div className="relative z-10">
-            <span className="inline-flex items-center gap-2 rounded-full glass-card px-4 py-1.5 text-xs font-accent font-semibold uppercase tracking-widest text-accent">
-              <Sparkles size={14} /> Haldwani's #1 Gaming Cafe
-            </span>
-            <h1 className="mt-6 font-display text-6xl sm:text-7xl lg:text-8xl font-black leading-[0.95] uppercase">
-              <span className="block text-glow">Game On.</span>
-              <span className="block bg-gradient-neon bg-clip-text text-transparent">Anytime.</span>
-            </h1>
-            <p className="mt-6 max-w-lg text-lg text-muted-foreground">
-              Haldwani's most advanced gaming cafe.
-              <span className="block mt-1 font-accent uppercase tracking-wider text-accent">
-                PS5 • PS4 • PC • VR — All Under One Roof
+      <section
+        className="relative overflow-hidden"
+        style={{ background: "var(--brand-black)", minHeight: "calc(100vh - 60px)" }}
+      >
+        <div className="absolute inset-0 diagonal-grid opacity-70" />
+        <div
+          className="absolute pointer-events-none"
+          style={{
+            left: "-10%",
+            top: "20%",
+            width: "800px",
+            height: "800px",
+            background: "radial-gradient(circle, rgba(232,25,44,0.14), transparent 60%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-[1200px] px-5 sm:px-8 pt-16 md:pt-20 pb-24 grid lg:grid-cols-[55%_45%] gap-10 lg:gap-8 items-center">
+          <div>
+            <div className="flex items-center gap-2">
+              <span
+                className="inline-block h-2 w-2 rounded-full"
+                style={{ background: "var(--brand-red)", boxShadow: "0 0 12px var(--brand-red)" }}
+              />
+              <span
+                className="font-accent font-semibold uppercase"
+                style={{ fontSize: "11px", letterSpacing: "4px", color: "var(--brand-red)" }}
+              >
+                Haldwani's Premier Gaming Destination
               </span>
+            </div>
+
+            <h1
+              className="mt-6 font-display uppercase leading-[0.9]"
+              style={{ fontSize: "clamp(72px, 12vw, 140px)", color: "var(--brand-white)" }}
+            >
+              <span className="block">Game</span>
+              <span className="block">Without</span>
+              <span className="block" style={{ color: "var(--brand-red)" }}>
+                Limits.
+              </span>
+            </h1>
+
+            <p
+              className="mt-6 font-sans"
+              style={{ color: "var(--brand-muted)", fontSize: "16px", letterSpacing: "2px" }}
+            >
+              PS5 · PS4 · PC · VR · RACING WHEEL
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
+
+            <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href={WHATSAPP_BOOKING_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex items-center gap-2 rounded-md bg-gradient-pink px-7 py-4 font-accent font-bold uppercase tracking-wider text-white shadow-neon-pink hover:scale-105 transition"
+                className="inline-flex items-center gap-2 rounded-md font-accent font-bold uppercase text-white transition-all duration-[160ms] ease-out hover:brightness-110 hover:shadow-neon"
+                style={{
+                  background: "var(--brand-red)",
+                  fontSize: "14px",
+                  letterSpacing: "2px",
+                  padding: "14px 32px",
+                }}
               >
-                Book Your Slot{" "}
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition" />
+                Book a Slot <ArrowRight size={16} />
               </a>
               <Link
-                to="/services"
-                className="inline-flex items-center gap-2 rounded-md glass-card px-7 py-4 font-accent font-bold uppercase tracking-wider text-foreground hover:shadow-neon-blue transition"
+                to="/pricing"
+                className="inline-flex items-center gap-2 rounded-md font-accent font-bold uppercase transition-all duration-[160ms] ease-out hover:border-white/40"
+                style={{
+                  background: "transparent",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                  color: "var(--brand-white)",
+                  fontSize: "14px",
+                  letterSpacing: "2px",
+                  padding: "14px 32px",
+                }}
               >
-                Explore Services
+                See Pricing
               </Link>
             </div>
           </div>
-          <div className="relative h-[420px] lg:h-[560px]">
-            <div className="absolute inset-0 grid place-items-center">
-              <div className="absolute h-80 w-80 rounded-full bg-primary/30 blur-3xl animate-pulse-glow" />
-              <img
-                src={controllerImg}
-                alt="Floating PS5 DualSense controller"
-                width={1024}
-                height={1024}
-                className="relative z-10 max-h-full w-auto animate-float drop-shadow-[0_30px_60px_rgba(123,47,255,0.5)]"
+
+          <div className="relative">
+            <div
+              className="relative overflow-hidden"
+              style={{
+                aspectRatio: "4/3",
+                background: "var(--brand-card)",
+                border: "1px solid rgba(232,25,44,0.2)",
+                borderRadius: "12px",
+              }}
+            >
+              <SkeletonImage
+                src={cafeImg}
+                alt="Anytime Gaming Cafe interior"
+                className="h-full w-full object-cover opacity-90"
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(7,7,16,0.5) 0%, transparent 60%)",
+                }}
+              />
+              <div
+                className="absolute bottom-4 left-5 font-accent uppercase text-[11px]"
+                style={{ letterSpacing: "3px", color: "var(--brand-muted)" }}
+              >
+                / Cafe Interior
+              </div>
+              <div
+                className="absolute pointer-events-none"
+                style={{
+                  right: "-40px",
+                  bottom: "-40px",
+                  width: "220px",
+                  height: "220px",
+                  background: "radial-gradient(circle, var(--brand-red-glow), transparent 70%)",
+                }}
               />
             </div>
           </div>
         </div>
+
+        {/* scroll indicator */}
+        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 bottom-6 flex-col items-center gap-2 pointer-events-none">
+          <span
+            className="font-accent uppercase"
+            style={{ fontSize: "10px", letterSpacing: "3px", color: "var(--brand-muted)" }}
+          >
+            Scroll
+          </span>
+          <ChevronDown size={14} className="animate-bounce" style={{ color: "var(--brand-muted)" }} />
+        </div>
       </section>
 
-      {/* STATS */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 -mt-10 relative z-10">
-        <div className="glass-card grid grid-cols-2 md:grid-cols-4 gap-4 px-6 py-8">
+      {/* STATS BAR */}
+      <section
+        className="border-y"
+        style={{
+          background: "var(--brand-dark)",
+          borderColor: "var(--brand-border)",
+        }}
+      >
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-8 grid grid-cols-2 md:grid-cols-4">
           {[
-            { label: "Gaming Stations", value: 10, suffix: "+" },
-            { label: "Happy Gamers", value: 1000, suffix: "+" },
-            { label: "Google Rating", value: 4.8, suffix: "★" },
-            { label: "Days Open", value: 365, suffix: "" },
-          ].map((s) => (
-            <div key={s.label} className="text-center">
-              <div className="font-display text-3xl sm:text-4xl font-black bg-gradient-neon bg-clip-text text-transparent">
-                {typeof s.value === "number" && s.value < 10 ? (
-                  `${s.value}${s.suffix}`
-                ) : (
-                  <>
-                    <Counter to={s.value as number} suffix={s.suffix} />
-                  </>
-                )}
+            { value: 10, suffix: "+", label: "Gaming Stations" },
+            { value: 500, suffix: "+", label: "Happy Gamers" },
+            { value: 4.8, suffix: "★", label: "Google Rating", decimals: 1 },
+            { value: 365, suffix: "", label: "Days Open" },
+          ].map((s, i) => (
+            <div
+              key={s.label}
+              className="py-8 md:py-9 text-center relative"
+              style={{
+                borderLeft: i > 0 ? "1px solid var(--brand-border)" : undefined,
+              }}
+            >
+              <div
+                className="font-mono font-bold"
+                style={{ fontSize: "clamp(28px, 4vw, 42px)", color: "var(--brand-white)" }}
+              >
+                <Counter to={s.value} suffix={s.suffix} decimals={s.decimals} />
               </div>
-              <div className="mt-1 font-accent text-xs uppercase tracking-widest text-muted-foreground">
+              <div
+                className="mt-2 font-sans uppercase"
+                style={{ fontSize: "11px", letterSpacing: "2px", color: "var(--brand-muted)" }}
+              >
                 {s.label}
               </div>
             </div>
@@ -175,203 +245,247 @@ function Home() {
       </section>
 
       {/* WHY US */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-24">
-        <div className="text-center mb-14">
-          <p className="font-accent uppercase tracking-[0.3em] text-sm text-accent">Why us</p>
-          <h2 className="mt-2 font-display text-4xl sm:text-5xl font-black uppercase">
-            Why Anytime Gaming?
-          </h2>
-        </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((f) => (
-            <div
-              key={f.title}
-              className="group relative glass-card p-7 hover:-translate-y-2 transition-all duration-300 hover:shadow-neon"
+      <section className="py-24 md:py-[96px]" style={{ background: "var(--brand-black)" }}>
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
+          <div className="mb-12">
+            <p className="section-label">// Why Choose Us</p>
+            <h2
+              className="mt-4 font-display uppercase"
+              style={{ fontSize: "clamp(36px, 5vw, 56px)", color: "var(--brand-white)" }}
             >
-              <div className="grid h-14 w-14 place-items-center rounded-xl bg-gradient-neon shadow-neon">
-                <f.icon size={26} className="text-white" />
+              The Anytime Difference
+            </h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {features.map((f) => (
+              <div
+                key={f.title}
+                className="group p-7 transition-all duration-[200ms] hover:-translate-y-[2px]"
+                style={{
+                  background: "var(--brand-card)",
+                  border: "1px solid var(--brand-border)",
+                  borderRadius: "12px",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(232,25,44,0.3)";
+                  e.currentTarget.style.borderTop = "2px solid var(--brand-red)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "var(--brand-border)";
+                  e.currentTarget.style.borderTop = "1px solid var(--brand-border)";
+                }}
+              >
+                <div
+                  className="grid h-11 w-11 place-items-center rounded"
+                  style={{ background: "var(--brand-red)" }}
+                >
+                  <f.icon size={20} className="text-white" />
+                </div>
+                <h3
+                  className="mt-5 font-accent font-bold uppercase"
+                  style={{ fontSize: "18px", letterSpacing: "1px", color: "var(--brand-white)" }}
+                >
+                  {f.title}
+                </h3>
+                <p className="mt-2 text-[14px] leading-relaxed" style={{ color: "var(--brand-muted)" }}>
+                  {f.desc}
+                </p>
               </div>
-              <h3 className="mt-5 font-display text-xl font-bold uppercase">{f.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{f.desc}</p>
-              <div className="pointer-events-none absolute inset-0 rounded-xl border border-transparent group-hover:border-accent/40 transition" />
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* SERVICES PREVIEW */}
-      <section className="relative py-24">
-        <div className="absolute inset-0 grid-bg opacity-20" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
+      {/* PLATFORMS */}
+      <section className="py-24 md:py-[96px]" style={{ background: "var(--brand-dark)" }}>
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
           <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
             <div>
-              <p className="font-accent uppercase tracking-[0.3em] text-sm text-accent">
-                What we offer
-              </p>
-              <h2 className="mt-2 font-display text-4xl sm:text-5xl font-black uppercase">
+              <p className="section-label">// Our Platforms</p>
+              <h2
+                className="mt-4 font-display uppercase"
+                style={{ fontSize: "clamp(36px, 5vw, 56px)", color: "var(--brand-white)" }}
+              >
                 Pick Your Platform
               </h2>
             </div>
             <Link
               to="/services"
-              className="font-accent uppercase tracking-wider text-sm text-accent hover:text-neon-pink flex items-center gap-2"
+              className="font-accent uppercase text-[13px] flex items-center gap-2 transition-colors hover:text-white"
+              style={{ color: "var(--brand-red)", letterSpacing: "2px" }}
             >
-              View all <ArrowRight size={16} />
+              View All <ArrowRight size={14} />
             </Link>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {services.map((s) => (
+          <div className="grid sm:grid-cols-2 gap-5">
+            {platforms.map((p) => (
               <Link
-                key={s.tag}
+                key={p.tag}
                 to="/services"
-                className="group glass-card p-6 hover:-translate-y-2 transition-all hover:shadow-neon-pink"
+                className="group relative overflow-hidden block"
+                style={{
+                  minHeight: "280px",
+                  borderRadius: "12px",
+                  border: "1px solid var(--brand-border)",
+                }}
               >
-                <div className="font-display text-5xl font-black bg-gradient-pink bg-clip-text text-transparent">
-                  {s.tag}
+                <SkeletonImage
+                  src={cafeImg}
+                  alt={p.title}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-[300ms] group-hover:scale-[1.04]"
+                  style={{ filter: `hue-rotate(${p.tag === "PS5" ? 0 : p.tag === "PS4" ? 20 : p.tag === "PC" ? 340 : 300}deg)` }}
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(to top, var(--brand-black) 40%, rgba(7,7,16,0.3) 100%)",
+                  }}
+                />
+                <div className="relative h-full min-h-[280px] flex flex-col justify-end p-7">
+                  <div className="flex items-end justify-between">
+                    <div>
+                      <div
+                        className="font-display uppercase leading-none"
+                        style={{ fontSize: "36px", color: "var(--brand-white)" }}
+                      >
+                        {p.title}
+                      </div>
+                      <p className="mt-2 text-[13px]" style={{ color: "var(--brand-muted)" }}>
+                        {p.desc}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <div
+                        className="font-mono font-bold"
+                        style={{ fontSize: "18px", color: "var(--brand-red)" }}
+                      >
+                        {p.price}
+                      </div>
+                      <div
+                        className="mt-2 font-accent uppercase text-[11px] flex items-center gap-1 justify-end"
+                        style={{ letterSpacing: "2px", color: "var(--brand-white)" }}
+                      >
+                        Book <ArrowRight size={12} />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="mt-4 font-display text-lg font-bold uppercase">{s.title}</h3>
-                <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* GALLERY TEASER */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-24">
-        <div className="text-center mb-12">
-          <p className="font-accent uppercase tracking-[0.3em] text-sm text-accent">
-            Inside the arena
-          </p>
-          <h2 className="mt-2 font-display text-4xl sm:text-5xl font-black uppercase">The Vibe</h2>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <div
-              key={i}
-              className={`relative overflow-hidden rounded-xl border border-border ${i === 0 ? "md:col-span-2 md:row-span-2 aspect-square md:aspect-auto" : "aspect-square"}`}
+      {/* TESTIMONIAL STRIP */}
+      <section className="py-24 md:py-[96px]" style={{ background: "var(--brand-black)" }}>
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
+          <div className="mb-12">
+            <p className="section-label">// Player Reviews</p>
+            <h2
+              className="mt-4 font-display uppercase"
+              style={{ fontSize: "clamp(36px, 5vw, 56px)", color: "var(--brand-white)" }}
             >
-              <SkeletonImage
-                src={cafeImg}
-                alt="Gaming cafe interior"
-                loading="lazy"
-                width={1600}
-                height={900}
-                className="h-full w-full object-cover transition-transform duration-700 hover:scale-110"
-                style={{ filter: `hue-rotate(${i * 30}deg)` }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
-            </div>
-          ))}
-        </div>
-        <div className="mt-8 text-center">
-          <Link
-            to="/gallery"
-            className="inline-flex items-center gap-2 glass-card px-6 py-3 font-accent font-bold uppercase tracking-wider text-sm hover:shadow-neon transition"
-          >
-            View Full Gallery <ArrowRight size={16} />
-          </Link>
-        </div>
-      </section>
-
-      {/* TESTIMONIALS */}
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 py-24">
-        <div className="text-center mb-12">
-          <p className="font-accent uppercase tracking-[0.3em] text-sm text-accent">
-            Word on the street
-          </p>
-          <h2 className="mt-2 font-display text-4xl sm:text-5xl font-black uppercase">
-            Loved by Gamers
-          </h2>
-        </div>
-        <div className="grid md:grid-cols-3 gap-5">
-          {[
-            {
-              name: "Rohan S.",
-              quote: "Best gaming setup in Haldwani, hands down. RTX rigs run BGMI buttery smooth.",
-            },
-            {
-              name: "Priya M.",
-              quote: "VR was insane! Staff was super friendly and the AC kept us going for hours.",
-            },
-            {
-              name: "Aman K.",
-              quote: "Birthday party at Anytime was lit. PS5 + snacks + neon vibes = perfect.",
-            },
-          ].map((r) => (
-            <div key={r.name} className="glass-card p-6 hover:shadow-neon transition">
-              <div className="flex gap-1 text-neon-pink">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} size={16} fill="currentColor" />
-                ))}
-              </div>
-              <p className="mt-4 text-foreground/90 leading-relaxed">"{r.quote}"</p>
-              <p className="mt-4 font-accent uppercase tracking-wider text-xs text-accent">
-                — {r.name}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA BANNER */}
-      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 py-24">
-        <div className="relative overflow-hidden rounded-3xl glass-card p-12 md:p-20 text-center">
-          <div className="absolute inset-0 bg-gradient-hero opacity-80" />
-          <Particles count={20} />
-          <div className="relative">
-            <h2 className="font-display text-5xl sm:text-7xl font-black uppercase text-glow">
-              Ready to Play?
+              Loved by Gamers
             </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Your next gaming session is one click away.
-            </p>
-            <a
-              href={WHATSAPP_BOOKING_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-8 inline-flex items-center gap-3 rounded-md bg-gradient-pink px-8 py-4 font-accent font-bold uppercase tracking-wider text-white shadow-neon-pink hover:scale-105 transition"
-            >
-              WhatsApp Us to Book <ArrowRight size={18} />
-            </a>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              { name: "Rohan S.", q: "Best gaming setup in Haldwani, hands down. RTX rigs run BGMI buttery smooth." },
+              { name: "Priya M.", q: "VR was insane! Staff was super friendly and the AC kept us going for hours." },
+              { name: "Aman K.", q: "Birthday at Anytime was lit. PS5 + snacks + neon vibes = perfect." },
+            ].map((r) => (
+              <div
+                key={r.name}
+                className="p-7"
+                style={{
+                  background: "var(--brand-card)",
+                  border: "1px solid var(--brand-border)",
+                  borderRadius: "12px",
+                }}
+              >
+                <div className="flex gap-0.5" style={{ color: "var(--brand-gold)" }}>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} size={15} fill="currentColor" />
+                  ))}
+                </div>
+                <p
+                  className="mt-4 italic text-[15px] leading-relaxed"
+                  style={{ color: "var(--brand-white)" }}
+                >
+                  "{r.q}"
+                </p>
+                <div className="mt-5 flex items-center justify-between pt-4 border-t" style={{ borderColor: "var(--brand-border)" }}>
+                  <span
+                    className="font-accent uppercase text-[13px]"
+                    style={{ letterSpacing: "2px", color: "var(--brand-white)" }}
+                  >
+                    {r.name}
+                  </span>
+                  <span
+                    className="text-[11px] uppercase"
+                    style={{ letterSpacing: "1.5px", color: "var(--brand-muted)" }}
+                  >
+                    Google Review
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ANNOUNCEMENT POPUP */}
-      {popup && (
-        <div className="fixed bottom-6 left-6 z-50 max-w-sm animate-fade-in">
-          <div className="glass-card p-5 shadow-neon-pink relative">
-            <button
-              onClick={() => setPopup(false)}
-              className="absolute top-2 right-2 text-muted-foreground hover:text-foreground text-xs"
-              aria-label="Close"
-            >
-              ✕
-            </button>
-            <p className="font-accent uppercase tracking-widest text-xs text-neon-pink">
-              🎉 New Tournament Alert
-            </p>
-            <h4 className="mt-2 font-display font-bold text-lg">BGMI Squad Tournament</h4>
-            <p className="text-xs text-muted-foreground mt-1">Entry ₹50 · Prize ₹2000</p>
-            <div className="mt-3 flex gap-2">
-              <Link
-                to="/tournaments"
-                onClick={() => setPopup(false)}
-                className="flex-1 text-center rounded bg-gradient-pink px-3 py-2 text-xs font-accent font-bold uppercase"
+      {/* CTA */}
+      <section className="py-24 md:py-[96px]" style={{ background: "var(--brand-dark)" }}>
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
+          <div
+            className="relative overflow-hidden text-center px-8 py-20"
+            style={{
+              background: "var(--brand-card)",
+              border: "1px solid rgba(232,25,44,0.2)",
+              borderRadius: "12px",
+            }}
+          >
+            <div
+              className="absolute pointer-events-none"
+              style={{
+                left: "50%",
+                top: "-50%",
+                transform: "translateX(-50%)",
+                width: "600px",
+                height: "600px",
+                background: "radial-gradient(circle, var(--brand-red-glow), transparent 70%)",
+              }}
+            />
+            <div className="relative">
+              <p className="section-label">// Ready?</p>
+              <h2
+                className="mt-4 font-display uppercase leading-[0.95]"
+                style={{ fontSize: "clamp(48px, 8vw, 96px)", color: "var(--brand-white)" }}
               >
-                Register
-              </Link>
-              <button
-                onClick={() => setPopup(false)}
-                className="rounded glass-card px-3 py-2 text-xs font-accent uppercase"
+                Come. Play.
+                <br />
+                <span style={{ color: "var(--brand-red)" }}>Win. Repeat.</span>
+              </h2>
+              <a
+                href={WHATSAPP_BOOKING_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-10 inline-flex items-center gap-2 rounded-md font-accent font-bold uppercase text-white transition-all duration-[160ms] ease-out hover:brightness-110"
+                style={{
+                  background: "var(--brand-red)",
+                  fontSize: "14px",
+                  letterSpacing: "2px",
+                  padding: "16px 40px",
+                  boxShadow: "0 12px 32px rgba(232,25,44,0.35)",
+                }}
               >
-                Later
-              </button>
+                Book on WhatsApp <ArrowRight size={16} />
+              </a>
             </div>
           </div>
         </div>
-      )}
+      </section>
     </div>
   );
 }
